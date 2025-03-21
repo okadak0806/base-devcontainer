@@ -1,0 +1,19 @@
+{
+    "name": "cuda",
+    "build": {
+      "dockerfile": "../Dockerfile"
+    },
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "extensions": [
+      "ms-python.python",
+      "kevinrose.vsc-python-indent",
+      "mhutchie.git-graph",
+      "eamodio.gitlens",
+      "ionutvmi.path-autocomplete"
+    ],
+    "forwardPorts": [8000],
+    "remoteUser": "root",
+    "runArgs": ["--gpus", "all"]
+}

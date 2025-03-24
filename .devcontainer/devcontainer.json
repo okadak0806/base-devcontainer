@@ -3,16 +3,24 @@
     "build": {
       "dockerfile": "../Dockerfile"
     },
-    "settings": {
-      "terminal.integrated.defaultProfile.linux": "bash"
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "bash"
+        },
+        "extensions": [
+          "ms-toolsai.jupyter",
+          "ms-python.python",
+          "ms-azuretools.vscode-docker",
+          "kevinrose.vsc-python-indent",
+          "mhutchie.git-graph",
+          "eamodio.gitlens",
+          "ionutvmi.path-autocomplete"
+        ]
+      }
     },
-    "extensions": [
-      "ms-python.python",
-      "kevinrose.vsc-python-indent",
-      "mhutchie.git-graph",
-      "eamodio.gitlens",
-      "ionutvmi.path-autocomplete"
-    ],
+
+
     "forwardPorts": [8000],
     "remoteUser": "root",
     "runArgs": ["--gpus", "all"]

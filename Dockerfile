@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     gnupg \
+    tar \
     && rm -rf /var/lib/apt/lists/*
 
 # Add NVIDIA repository
@@ -32,10 +33,28 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 # Upgrade pip
 RUN python -m pip install --upgrade pip
 
-RUN pip install tensorflow-gpu==2.11.0 numpy==1.24.3 tensorrt
+RUN pip install tensorflow-gpu==2.11.0 \
+                numpy==1.24.3 \
+                tensorrt \
+                HinetPy \
+                obspy==1.4.1 \
+                ipykernel \
+                pandas
 
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 ENV TF_CPP_MIN_LOG_LEVEL=2
+
+### win32tools install from tar.gz need to use HinetPy
+COPY ./win32tools.tar.gz /opt/
+ 
+RUN cd /opt/ && \
+    tar -xzvf win32tools.tar.gz && \
+    cd win32tools && \
+    make && \
+    cp /opt/win32tools/catwin32.src/catwin32 /usr/local/bin  && \
+    cp /opt/win32tools/w32tow1.src/w32tow1 /usr/local/bin && \
+    cp /opt/win32tools/win2sac.src/win2sac_32 /usr/local/bin 
+    # cp /opt/win32tools/dewin.src/dewin32 /usr/local/bin
 
 # Default command
 CMD ["/bin/bash"]

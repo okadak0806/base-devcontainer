@@ -39,8 +39,7 @@ RUN pip install tensorflow-gpu==2.11.0 \
                 HinetPy \
                 obspy==1.4.1 \
                 ipykernel \
-                pandas \
-                boto3
+                pandas
 
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 ENV TF_CPP_MIN_LOG_LEVEL=2
